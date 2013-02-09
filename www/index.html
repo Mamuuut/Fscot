@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>FSCOT - France Shuttle, Cabs On Time</title>
+        <meta name="Identifier-url" content="http://www.fscot.com">
+        <meta name="Robots" content="Index, Follow">
+        <meta name="keywords" content="shuttle, fscot, airport, paris, charles de gaulle, orly, beauvais, disney, asterix, taxi, fastest, parisshuttle, paris-shuttle, travel">
+        <meta name="Revisit-After" content="1 days">
+        <meta name="Author" content="Mathieu Delaunay">
+        <meta name="Description" content="FSCOT - France Shuttle, Cabs On Time,
+        Private Transfer,
+        Whatever your journey, we are at your service. Our experienced team guarantees you a quality service for a hotel-airport transfer, a trip to a touristic area or for your business meetings in the region.">
+        <meta name="Owner" content="www.fscot.com">
+        <meta http-equiv="Content-Language" content="en_US">
+        <meta name="Reply-To" content="contact@fscot.com">
+        
+        <link rel="shortcut icon" type="image/png" href="img/siteicon.png">
+        <link type="text/css" rel="stylesheet" href="css/common.css">
+        <link type="text/css" rel="stylesheet" href="css/jquery-ui-1.8.24.custom.css">
+        <!--[if lt IE 9]>
+        	<link rel="stylesheet" href="css/ie.css" type="text/css"/>
+		<![endif]-->
+	    
+	    <script type="text/javascript" data-main="js/main" src="js/libs/require-jquery.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Header -->
+			<div class="header">
+                <img alt="Logo" src="img/header.jpg"/>
+			</div>
+
+			<!-- Menu -->
+			<div class="separator"></div>
+			<div class="menu">
+				<ul id="nav">
+					<li data-tab="home" i18n="menu.home"></li>
+					<li data-tab="rates" i18n="menu.rates"></li>
+					<li data-tab="book" i18n="menu.book"></li>
+					<li data-tab="gallery" i18n="menu.photos"></li>
+				</ul>
+				
+                <div id="langSelector">
+                    <div id="lang_de" lang="de" alt="Im Deutsch" title="Im Deutsch"></div>
+                    <div id="lang_en" lang="en" alt="In English" title="In English"></div>
+                    <div id="lang_fr" lang="fr" alt="En Français" title="En Français"></div>
+                </div>
+                
+                <div style="clear:both"></div>
+			</div>
+
+			<!-- Content -->
+			<div class="content">
+				
+				<!-- Home -->
+				<div class="tab_content" id="home">
+					<h2 i18n="tab.home.welcome"></h2>
+					<div id="home_intro" i18n="tab.home.intro"></div>
+					
+                    <div class="photo top left">
+                        <img src="img/fscot_cdg.jpg" width="150" />
+                        <p i18n="tab.home.photo.cdg"></p>
+                    </div>
+                    <div class="photo top right">
+                        <img src="img/fscot_dp.jpg" width="150" />
+                        <p i18n="tab.home.photo.disney"></p>
+                    </div>
+                    <div class="photo middle left">
+                        <img src="img/fscot_ab.jpg" width="150" />
+                        <p i18n="tab.home.photo.beauvais"></p>
+                    </div>
+                    <div class="photo bottom right">
+                        <img src="img/fscot_msm.jpg" width="150" />
+                        <p i18n="tab.home.photo.msm"></p>
+                    </div>
+                    <div class="photo bottom left">
+                        <img src="img/fscot_pbn.jpg" width="150" />
+                        <p i18n="tab.home.photo.paris"></p>
+                    </div>
+				</div>
+				
+				<!-- Rates -->
+				<div class="tab_content" id="rates">
+					<div id="returnRates"></div>
+                    <div id="oneWayRates"></div>
+                    <div i18n="tab.rates.note"></div>
+                    <div i18n="tab.rates.content"></div>
+				</div>
+				
+				<!-- Book -->
+				<div class="tab_content" id="book">
+                    <form class="book-content" id="form" name="form" method="post" action="sendmail.php" onsubmit="return booking.checkForm()">
+                        <h1 i18n="tab.book.header">Booking form</h1>
+                        
+                        <label for="transferType" i18n="tab.book.transferType.label"></label>
+                        <input type="radio" name="transferType" value="oneWayTransfer" id="oneWayTransfer" />
+                        <label i18n="tab.book.transferType.oneWayTransfer" for="oneWayTransfer" class="radio-label"></label>
+                        <input type="radio" name="transferType" value="returnTransfer" id="returnTransfer" />
+                        <label i18n="tab.book.transferType.returnTransfer" for="returnTransfer" class="radio-label"></label>
+                        
+                        <div style="clear: both"></div>
+                        
+                        <div class="bookFieldDiv" id="transferStartDateDiv">
+                            <label for="transferStartDate" i18n="tab.book.transferStartDate.label"></label>
+                            <input class="date-picker" type="text" name="transferStartDate" id="transferStartDate" maxsize="10" size="10" autocomplete="off">
+                        </div>
+                        
+                        <div class="bookFieldDiv" id="transferStartPlaceDiv">
+                            <label for="transferStartPlace" i18n="tab.book.transferStartPlace.label"></label>
+                            <select id="transferStartPlace" name="transferStartPlace">
+                                <option value="0"></option>
+                                <option i18n="tab.book.transferStartPlace.cdg" value="1"></option>
+                                <option i18n="tab.book.transferStartPlace.orly" value="2"></option>
+                                <option i18n="tab.book.transferStartPlace.beauvais" value="3"></option>
+                                <option i18n="tab.book.transferStartPlace.disney" value="4"></option>
+                                <option i18n="tab.book.transferStartPlace.paris" value="5"></option>
+                                <option i18n="tab.book.transferStartPlace.other" value="6"></option>
+                            </select>
+                        </div>
+                        
+                        <div class="bookFieldDiv checkField" id="transferStartFlightNumberDiv">
+                            <label for="transferStartFlightNumber" i18n="tab.book.flightNumber.label"></label>
+                            <input type="text" name="transferStartFlightNumber" id="transferStartFlightNumber" size="20" />
+                        </div>
+                        
+                        <div class="bookFieldDiv" id="transferStartAddressDiv">
+                            <label for="transferStartAddress" i18n="tab.book.address.label"></label>
+                            <textarea name="transferStartAddress" id="transferStartAddress" rows="3" cols="25"></textarea>
+                        </div>
+                            
+                        <div class="bookFieldDiv" id="transferStartHourDiv">
+                            <label for="transferStartHour" i18n="tab.book.transferStartHour.label"></label>
+                            <input type="text" name="transferStartHour" id="transferStartHour" maxsize="10" size="4">
+                        </div>
+                        
+                        <div class="bookFieldDiv" id="transferEndPlaceDiv">
+                            <label for="transferEndPlace" i18n="tab.book.transferEndPlace.label"></label>
+                            <select id="transferEndPlace" name="transferEndPlace">
+                                <option value="0"></option>
+                                <option i18n="tab.book.transferEndPlace.cdg" value="1"></option>
+                                <option i18n="tab.book.transferEndPlace.orly" value="2"></option>
+                                <option i18n="tab.book.transferEndPlace.beauvais" value="3"></option>
+                                <option i18n="tab.book.transferEndPlace.disney" value="4"></option>
+                                <option i18n="tab.book.transferEndPlace.parisHotel" value="5"></option>
+                                <option i18n="tab.book.transferEndPlace.parisTrain" value="6"></option>
+                                <option i18n="tab.book.transferEndPlace.other" value="7"></option>
+                            </select>
+                        </div>
+                        
+                        <div class="bookFieldDiv" id="transferEndFlightNumberDiv">
+                            <label for="transferEndFlightNumber" i18n="tab.book.flightNumber.label"></label>
+                            <input type="text" name="transferEndFlightNumber" id="transferEndFlightNumber" size="20" />
+                        </div>
+                        
+                        <div class="bookFieldDiv" id="transferEndAddressDiv">
+                            <label for="transferEndAddress" i18n="tab.book.address.label"></label>
+                            <textarea name="transferEndAddress" id="transferEndAddress" rows="3" cols="25"></textarea>
+                        </div>
+                        
+                        <div id="transferEndDiv">
+                            <div class="bookFieldDiv" id="transferEndDateDiv">
+                                <label for="transferEndDate" i18n="tab.book.transferEndDate.label"></label>
+                                <input class="date-picker" type="text" name="transferEndDate" id="transferEndDate" maxsize="10" size="10" autocomplete="off">
+                            </div>
+                            
+                            <div class="bookFieldDiv" id="transferEndHourDiv">
+                                <label for="transferEndHour" i18n="tab.book.transferEndHour.label"></label>
+                                <input type="text" name="transferEndHour" id="transferEndHour" maxsize="10" size="4">
+                            </div>
+                        </div>
+                        
+                        <label for="nbAdultPassengers" i18n="tab.book.nbPassengers.label"></label>
+                        <select class="passengers" id="nbAdultPassengers" name="nbAdultPassengers">
+                            <option i18n="tab.book.nbPassengers.adult" value="1"></option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option i18n="tab.book.nbPassengers.more" value="more"></option>
+                        </select> &nbsp;&nbsp;
+                        <select class="passengers" id="nbChildPassengers" name="nbChildPassengers">
+                            <option i18n="tab.book.nbPassengers.child" value="0"></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select> &nbsp;&nbsp;
+                        <select class="passengers" id="nbBabyPassengers" name="nbBabyPassengers">
+                            <option i18n="tab.book.nbPassengers.baby" value="0"></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        
+                        <div style="clear: both"></div>
+                        
+                        <label for="customerGender" i18n="tab.book.customerGender.label"></label>
+                        <input type="radio" name="customerGender" value="genderMr" id="genderMr" checked="checked" />
+                        <label i18n="tab.book.customerGender.mr" for="genderMr" class="radio-label"></label>
+                        <input type="radio" name="customerGender" value="genderMrs" id="genderMrs" />
+                        <label i18n="tab.book.customerGender.mrs" for="genderMrs" class="radio-label"></label>
+                        
+                        <div style="clear: both"></div>
+                        
+                        <div class="bookFieldDiv" id="customerNameDiv">
+                            <label for="customerName" i18n="tab.book.customerName.label"></label>
+                            <input type="text" name="customerName" id="customerName" />
+                        </div>
+                        
+                        <div class="bookFieldDiv checkField" id="customerMailDiv">
+                            <label for="customerMail" i18n="tab.book.customerMail.label"></label>
+                            <input type="text" name="customerMail" id="customerMail" />
+                        </div>
+                        
+                        <div class="bookFieldDiv" id="customerPhoneDiv">
+                            <label for="customerPhone" i18n="tab.book.customerPhone.label"></label>
+                            <input type="text" name="customerPhone" id="customerPhone" />
+                        </div>                        
+                        
+                        <label for="comment" i18n="tab.book.comment.label"></label>
+                        <textarea name="comment" id="comment" rows="3" cols="25"></textarea>
+                        
+                        <input type="hidden" name="mailContent" id="mailContent" />
+                        <input type="hidden" name="phpLocale" id="phpLocale" />
+                        
+                        <button i18n="tab.book.submit" type="submit"></button>
+                        <div class="spacer"></div>
+                    </form>
+				    <div class="book-content" id="book_success" i18n="tab.book.success"></div>
+				    <div class="book-content" id="book_error" i18n="tab.book.error"></div>
+				</div>
+                
+                <!-- Gallery -->
+                <div class="tab_content" id="gallery">
+                </div>
+				
+			</div>
+
+			<!-- Footer -->
+			<div class="separator"></div>
+			<div class="footer">
+				<div class="book" i18n="footer.contact"></div>
+                <div class="legal-mention" i18n="footer.legal"></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,4 @@
+.full-img-container, .spinner-container {
+	background:transparent;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#70000000,endColorstr=#70000000); 
+}
