@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>My Disney Cab</title>
+        <meta name="Identifier-url" content="http://www.fscot.com">
+        <meta name="Robots" content="Index, Follow">
+        <meta name="keywords" content="shuttle, cab, airport, paris, charles de gaulle, orly, beauvais, disney, asterix, taxi, fastest, parisshuttle, paris-shuttle, travel">
+        <meta name="Revisit-After" content="1 days">
+        <meta name="Description" content="My Disney Cab,
+        The private shuttle service quickly and economically to get Airports, Train stations, Attraction park and Tourist places from your Home, Office or Hotel. Book now your private shuttle !">
+        <meta name="Owner" content="www.fscot.com">
+        <meta http-equiv="Content-Language" content="en_US">
+        <meta name="Reply-To" content="contact@fscot.com">
+
+        <link rel="shortcut icon" type="image/png" href="img/siteicon.png">
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="css/common.css">
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="css/ie.css" type="text/css"/>
+        <![endif]-->
+
+    </head>
+
+    <body>
+        <div class="gradient">
+            <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="myLinearGradient1"
+                                x1="0%" y1="0%"
+                                x2="0%" y2="100%"
+                                spreadMethod="pad">
+                  <stop offset="0%"   stop-color="#430043" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#C351C3" stop-opacity="1"/>
+                </linearGradient>
+              </defs>
+
+              <rect id="rect1" x="0" y="0" width="100%" height="100%" style="fill:url(#myLinearGradient1);"/>
+            </svg>
+        </div>
+
+        <div class="header">
+            <img class="mickey hidden-xs" src="img/mickey.png"/>
+        </div>
+
+        <nav class="navbar navbar-inverse" role="navigation">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li data-tab="#home"><a href="#" data-i18n="menu.home"></a></li>
+                <li data-tab="#rates"><a href="#rates" data-i18n="menu.rates"></a></li>
+                <li data-tab="#booking"><a href="#booking" data-i18n="menu.book"></a></li>
+                <li data-tab="#photo"><a href="#photo" data-i18n="menu.photo"></a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a class="lang-btn" data-lang="de"><span id="lang_de" alt="Im Deutsch" title="Im Deutsch"></span></a></li>
+                <li><a class="lang-btn" data-lang="fr"><span id="lang_fr" alt="En Français" title="En Français"></span></a></li>
+                <li><a class="lang-btn" data-lang="en"><span id="lang_en" alt="In English" title="In English"></span></a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container">
+
+            <div class="content">
+                <!-- Home -->
+                <div id="home" class="tab-content">
+                    <!-- <h2 data-i18n="tab.home.welcome"></h2> -->
+                    <p data-i18n="tab.home.intro.title" class="intro title"></p>
+                    <p data-i18n="tab.home.intro.desc" class="intro desc"></p>
+
+                    <div class="home-photo-wrapper row">
+                        <div class="col-sm-4 col-xs-12">
+                            <img src="img/home_dp.jpg" class="photo disney"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <img src="img/home_cdg.jpg" class="photo airport"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <img src="img/home_pbn.jpg" class="photo paris"/>
+                        </div>
+                    </div>
+
+                    <div class="book-wrapper">
+                        <a href="#booking" class="btn book" data-i18n="tab.home.book"></a>
+                    </div>
+
+                    <p data-i18n="tab.home.desc"></p>
+                    <div class="home-content row">
+                        <div class="col-sm-6 col-xs-12">
+                            <p data-i18n="tab.home.destination.title"></p>
+                            <ul data-i18n="tab.home.destination"></ul>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <p data-i18n="tab.home.service.title"></p>
+                            <ul data-i18n="tab.home.service"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rates -->
+                <div class="tab-content" id="rates">
+                    <div id="returnRates"></div>
+                    <div class="book-wrapper">
+                        <a href="#booking" class="btn book" data-i18n="tab.home.book"></a>
+                    </div>
+
+                    <div id="oneWayRates"></div>
+                    <div class="book-wrapper">
+                        <a href="#booking" class="btn book" data-i18n="tab.home.book"></a>
+                    </div>
+
+                    <div data-i18n="tab.rates.note"></div>
+                    <div data-i18n="tab.rates.content"></div>
+                </div>
+
+                <!-- Photo -->
+                <div class="tab-content" id="photo">
+                     <ul class="row">
+                          <li class="col-sm-3 col-xs-6">
+                              <img src="img/photos/thumbs/caravelle_01.jpg" data-full="img/photos/caravelle_01.jpg"/>
+                          </li>
+                          <li class="col-sm-3 col-xs-6">
+                              <img src="img/photos/thumbs/caravelle_02.jpg" data-full="img/photos/caravelle_02.jpg"/>
+                          </li>
+                          <li class="col-sm-3 col-xs-6">
+                              <img src="img/photos/thumbs/caravelle_03.jpg" data-full="img/photos/caravelle_03.jpg"/>
+                          </li>
+                          <li class="col-sm-3 col-xs-6">
+                              <img src="img/photos/thumbs/caravelle_04.jpg" data-full="img/photos/caravelle_04.jpg"/>
+                          </li>
+                     </ul>
+                </div>
+            </div>
+
+        </div><!-- /.container -->
+
+        <footer class="bs-docs-footer" role="contentinfo">
+            <div class="book" data-i18n="footer.contact"></div>
+            <div class="legal-mention" data-i18n="footer.legal"></div>
+        </footer>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/javascript" data-main="js/main" src="js/libs/require.js"></script>
+
+
+    </body>
+</html>

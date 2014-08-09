@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.fscot.com">
+
+   <url>
+      <loc>http://www.fscot.com/</loc>
+      <priority>1.0</priority>
+   </url>
+
+   <url>
+      <loc>http://www.fscot.com/?tab=book</loc>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://www.fscot.com/?tab=rates</loc>
+      <priority>0.6</priority>
+   </url>
+
+   <url>
+      <loc>http://www.fscot.com/?tab=gallery</loc>
+      <priority>0.4</priority>
+   </url>
+
+</urlset> 
