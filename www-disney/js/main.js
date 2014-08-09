@@ -2,9 +2,12 @@
  * @author Mathieu Delaunay
  */
 
+console.log('Loaded');
+
 require.config( {
     paths: {
         'jquery'            : "libs/jquery-1.11.1.min",
+        'jquery-migrate'    : "libs/jquery-migrate-1.2.1.min",
         'jqueryextends'     : 'libs/jquery.extends',
         'jquery-hashchange' : 'libs/jquery.ba-hashchange.min',
         'bootstrap'         : 'libs/bootstrap.min',
@@ -15,7 +18,8 @@ require.config( {
     },
 
     shim: {
-        'jquery-hashchange'         : ['jquery'],
+        'jquery-migrate'            : ['jquery'],
+        'jquery-hashchange'         : ['jquery-migrate'],
         'bootstrap'                 : ['jquery'],
         'bootstrap-datepicker'      : ['bootstrap'],
         'bootstrap-datepicker.de'   : ['bootstrap-datepicker'],
