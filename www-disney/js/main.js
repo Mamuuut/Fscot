@@ -2,8 +2,6 @@
  * @author Mathieu Delaunay
  */
 
-console.log('Loaded');
-
 require.config( {
     paths: {
         'jquery'                    : "libs/jquery-1.11.1.min",

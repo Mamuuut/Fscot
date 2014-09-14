@@ -111,9 +111,9 @@ define( [
                         self.generateMailContent(),
                         LocaleManager.getLocale()
                     ],
-                    function(result)
+                    function(data)
                     {
-                        if (result.msg === 'mailsuccess') {
+                        if (data.result && data.result.msg === 'mailsuccess') {
                             $('#booking .alert-sucess').show();
                         }
                         else {
