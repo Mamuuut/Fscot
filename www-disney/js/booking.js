@@ -114,7 +114,7 @@ define( [
                     function(data)
                     {
                         if (data.result && data.result.msg === 'mailsuccess') {
-                            $('#booking .alert-sucess').show();
+                            $('#booking .alert-success').show();
                         }
                         else {
                             $('#booking .alert-danger').show();
