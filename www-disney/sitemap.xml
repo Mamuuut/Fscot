@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<urlset xmlns="http://www.fscot.com">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
    <url>
       <loc>http://www.fscot.com/</loc>
@@ -8,18 +8,18 @@
    </url>
 
    <url>
-      <loc>http://www.fscot.com/?tab=book</loc>
+      <loc>http://www.fscot.com/#booking</loc>
       <priority>0.8</priority>
    </url>
 
    <url>
-      <loc>http://www.fscot.com/?tab=rates</loc>
+      <loc>http://www.fscot.com/#rates</loc>
       <priority>0.6</priority>
    </url>
 
    <url>
-      <loc>http://www.fscot.com/?tab=gallery</loc>
+      <loc>http://www.fscot.com/#photo</loc>
       <priority>0.4</priority>
    </url>
 
-</urlset> 
+</urlset>

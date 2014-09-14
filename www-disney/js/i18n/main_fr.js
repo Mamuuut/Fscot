@@ -83,5 +83,90 @@ define(
     'tab.rates.oneWayRates.paris_visit_price'   : '50€/Heure',
 
     'tab.rates.note'    : '<i>*(sans commentaire historique ou culturel)</i>',
-    'tab.rates.content' : '<b>Pour toute autre destination, veuillez nous contacter afin d&apos;obtenir un devis sur mesure.</b>'
+    'tab.rates.content' : '<b>Pour toute autre destination, veuillez nous contacter afin d&apos;obtenir un devis sur mesure.</b>',
+
+    /* Booking */
+    'tab.book.header' : 'Formulaire de réservation',
+
+    'tab.book.transferType.label' : 'Type de transfert',
+    'tab.book.transferType.oneWayTransfer' : 'Aller simple ',
+    'tab.book.transferType.returnTransfer' : 'Aller-retour',
+
+    'tab.book.transferStartDate.label' : 'Date et heure d&apos;arrivée',
+    'tab.book.transferStartDate.error' : 'Merci de saisir une date',
+
+    'tab.book.transferStartPlace.label'     : 'Lieu d&apos;arrivée',
+    'tab.book.transferStartPlace.default'   : 'Merci de saisir un lieu',
+    'tab.book.transferStartPlace.cdg'       : 'Aéroport Charles-de-Gaulle',
+    'tab.book.transferStartPlace.orly'      : 'Aéroport Orly',
+    'tab.book.transferStartPlace.beauvais'  : 'Aéroport Beauvais',
+    'tab.book.transferStartPlace.disney'    : 'Disney',
+    'tab.book.transferStartPlace.paris'     : 'Hôtel sur Paris',
+    'tab.book.transferStartPlace.other'     : 'Autre',
+
+    'tab.book.flightNumber.label' : 'Numéro de vol',
+    'tab.book.flightNumber.error' : 'Merci de saisir le numéro de vol',
+
+    'tab.book.transferStartHour.label' : 'Heure d\'arrivée',
+
+    'tab.book.transferEndPlace.label'      : 'Destination',
+    'tab.book.transferEndPlace.error'      : 'Merci de saisir un lieu',
+    'tab.book.transferEndPlace.cdg'        : 'Aéroport Charles-de-Gaulle',
+    'tab.book.transferEndPlace.orly'       : 'Aéroport Orly',
+    'tab.book.transferEndPlace.beauvais'   : 'Aéroport Beauvais',
+    'tab.book.transferEndPlace.disney'     : 'Disney - Hôtel',
+    'tab.book.transferEndPlace.parisHotel' : 'Hôtel sur Paris',
+    'tab.book.transferEndPlace.parisTrain' : 'Gare dans Paris',
+    'tab.book.transferEndPlace.other'      : 'Autre',
+
+    'tab.book.address.label' : 'Adresse',
+    'tab.book.address.error' : 'Merci de saisir une adresse',
+
+    'tab.book.transferEndDate.label' : 'Date et heure de retour',
+    'tab.book.transferEndDate.error' : 'Merci de saisir une date',
+
+    'tab.book.nbPassengers.label'   : 'Nombre de passagers',
+    'tab.book.nbPassengers.adult1'  : '1 adulte',
+    'tab.book.nbPassengers.adult2'  : '2 adultes',
+    'tab.book.nbPassengers.adult3'  : '3 adultes',
+    'tab.book.nbPassengers.adult4'  : '4 adultes',
+    'tab.book.nbPassengers.adult5'  : '5 adultes',
+    'tab.book.nbPassengers.adult6'  : '6 adultes',
+    'tab.book.nbPassengers.adult7'  : '7 adultes',
+    'tab.book.nbPassengers.adult8'  : '8 adultes',
+    'tab.book.nbPassengers.more'    : 'plus',
+
+    'tab.book.nbPassengers.child0'  : '0 enfant',
+    'tab.book.nbPassengers.child1'  : '1 enfant',
+    'tab.book.nbPassengers.child2'  : '2 enfants',
+    'tab.book.nbPassengers.child3'  : '3 enfants',
+    'tab.book.nbPassengers.child4'  : '4 enfants',
+
+    'tab.book.nbPassengers.baby0'   : '0 bébé',
+    'tab.book.nbPassengers.baby1'   : '1 bébé',
+    'tab.book.nbPassengers.baby2'   : '2 bébés',
+    'tab.book.nbPassengers.baby3'   : '3 bébés',
+    'tab.book.nbPassengers.baby4'   : '4 bébés',
+
+    'tab.book.customerGender.label' : 'Civilité',
+    'tab.book.customerGender.mr'    : 'M.',
+    'tab.book.customerGender.mrs'   : 'Mme.',
+
+    'tab.book.customerName.label' : 'Nom',
+    'tab.book.customerName.error' : 'Merci de saisir votre nom',
+
+    'tab.book.customerMail.label' : 'Adresse e-mail',
+    'tab.book.customerMail.error' : 'Merci de saisir une adresse e-mail',
+
+    'tab.book.customerPhone.label' : 'Numéro de téléphone',
+    'tab.book.customerPhone.help'  : 'avec indicatif pays',
+    'tab.book.customerPhone.error' : 'Merci de saisir un numéro de téléphone',
+
+    'tab.book.comment.label' : 'Commentaires additionnels',
+
+    'tab.book.submit' : 'Envoyer la réservation',
+
+    'tab.book.success'  : 'Votre demande de réservation a bien été envoyée.<br/>Un de nos employés vous contactera prochainement.',
+    'tab.book.error'    : 'Une erreur est survenue lors de l\'envoi de votre de demande de réservation.<br/>Veuillez réessayer ultérieurement.'
+
 });

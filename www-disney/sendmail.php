@@ -6,14 +6,13 @@
         return filter_var( $field, FILTER_VALIDATE_EMAIL );
     }
 
-    $location = "Location: ./";
-    $location .= "?ul=" . $_POST['phpLocale'];
+    $result .= $_POST['phpLocale'];
 
     if ( !spamcheck( $_REQUEST['customerMail'] )
         || !isset( $_POST['mailContent'] )
         || empty( $_POST['mailContent'] ) )
     {
-        $location .= "&mr=error";
+        $result .= "spamcheck";
     } else {
         $to = "contact@fscot.com, mamut.delaunay@gmail.com";
         $subject = "FSCOT Booking - " . $_POST['customerName'];
@@ -24,12 +23,11 @@
 
         if ( mail( $to, $subject, $body, $headers ) )
         {
-            $location .= "&mr=success";
+            $result .= "success";
         } else {
-            $location .= "&mr=error";
+            $result .= "error";
         }
     }
-
-    header( $location );
+    print_r( $result); echo "\n";
     exit();
 ?>

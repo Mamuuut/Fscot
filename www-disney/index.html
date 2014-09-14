@@ -15,27 +15,28 @@
 
         <link rel="shortcut icon" type="image/png" href="img/siteicon.png">
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
         <link type="text/css" rel="stylesheet" href="css/common.css">
-        <!--[if lt IE 9]>
-            <link rel="stylesheet" href="css/ie.css" type="text/css"/>
-        <![endif]-->
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="css/ie.css" type="text/css"/>
+    <![endif]-->
 
     </head>
 
     <body>
         <div class="gradient">
             <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="myLinearGradient1"
-                                x1="0%" y1="0%"
-                                x2="0%" y2="100%"
-                                spreadMethod="pad">
-                  <stop offset="0%"   stop-color="#430043" stop-opacity="1"/>
-                  <stop offset="100%" stop-color="#C351C3" stop-opacity="1"/>
-                </linearGradient>
-              </defs>
+                <defs>
+                    <linearGradient id="myLinearGradient1"
+                        x1="0%" y1="0%"
+                        x2="0%" y2="100%"
+                        spreadMethod="pad">
+                        <stop offset="0%"   stop-color="#430043" stop-opacity="1"/>
+                        <stop offset="100%" stop-color="#C351C3" stop-opacity="1"/>
+                    </linearGradient>
+                </defs>
 
-              <rect id="rect1" x="0" y="0" width="100%" height="100%" style="fill:url(#myLinearGradient1);"/>
+                <rect id="rect1" x="0" y="0" width="100%" height="100%" style="fill:url(#myLinearGradient1);"/>
             </svg>
         </div>
 
@@ -44,32 +45,38 @@
         </div>
 
         <nav class="navbar navbar-inverse" role="navigation">
-          <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li data-tab="#home"><a href="#" data-i18n="menu.home"></a></li>
-                <li data-tab="#rates"><a href="#rates" data-i18n="menu.rates"></a></li>
-                <li data-tab="#booking"><a href="#booking" data-i18n="menu.book"></a></li>
-                <li data-tab="#photo"><a href="#photo" data-i18n="menu.photo"></a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a class="lang-btn" data-lang="de"><span id="lang_de" alt="Im Deutsch" title="Im Deutsch"></span></a></li>
-                <li><a class="lang-btn" data-lang="fr"><span id="lang_fr" alt="En Français" title="En Français"></span></a></li>
-                <li><a class="lang-btn" data-lang="en"><span id="lang_en" alt="In English" title="In English"></span></a></li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+                    <ul class="nav navbar-nav visible-xs">
+                        <li><a class="lang-btn" data-lang="de"><span id="lang_de" alt="Im Deutsch" title="Im Deutsch"></span></a></li>
+                        <li><a class="lang-btn" data-lang="fr"><span id="lang_fr" alt="En Français" title="En Français"></span></a></li>
+                        <li><a class="lang-btn" data-lang="en"><span id="lang_en" alt="In English" title="In English"></span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li data-tab="#home"><a href="#" data-i18n="menu.home"></a></li>
+                        <li data-tab="#rates"><a href="#rates" data-i18n="menu.rates"></a></li>
+                        <li data-tab="#booking"><a href="#booking" data-i18n="menu.book"></a></li>
+                        <li data-tab="#photo"><a href="#photo" data-i18n="menu.photo"></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right hidden-xs">
+                        <li><a class="lang-btn" data-lang="de"><span id="lang_de" alt="Im Deutsch" title="Im Deutsch"></span></a></li>
+                        <li><a class="lang-btn" data-lang="fr"><span id="lang_fr" alt="En Français" title="En Français"></span></a></li>
+                        <li><a class="lang-btn" data-lang="en"><span id="lang_en" alt="In English" title="In English"></span></a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
         </nav>
 
         <div class="container">
@@ -94,7 +101,7 @@
                     </div>
 
                     <div class="book-wrapper">
-                        <a href="#booking" class="btn book" data-i18n="tab.home.book"></a>
+                        <a href="#booking" class="fscot btn book" data-i18n="tab.home.book"></a>
                     </div>
 
                     <p data-i18n="tab.home.desc"></p>
@@ -114,34 +121,326 @@
                 <div class="tab-content" id="rates">
                     <div id="returnRates"></div>
                     <div class="book-wrapper">
-                        <a href="#booking" class="btn book" data-i18n="tab.home.book"></a>
+                        <a href="#booking" class="fscot btn book" data-i18n="tab.home.book"></a>
                     </div>
 
                     <div id="oneWayRates"></div>
                     <div class="book-wrapper">
-                        <a href="#booking" class="btn book" data-i18n="tab.home.book"></a>
+                        <a href="#booking" class="fscot btn book" data-i18n="tab.home.book"></a>
                     </div>
 
                     <div data-i18n="tab.rates.note"></div>
                     <div data-i18n="tab.rates.content"></div>
                 </div>
 
+                <!-- Booking -->
+                <div class="tab-content" id="booking">
+                    <form
+                        class="form-horizontal"
+                        role="form"
+                        method="post"
+                        action="sendmail.php"
+                        onsubmit="return booking.checkForm()">
+
+                        <!-- Type -->
+                        <div class="form-group" data-type="radio">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferType"
+                                data-i18n="tab.book.transferType.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <label class="radio-inline">
+                                    <input type="radio" name="transferType" id="oneWayTransfer" value="oneWayTransfer" checked>
+                                    <span data-i18n="tab.book.transferType.oneWayTransfer"></span>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="transferType" id="returnTransfer" value="returnTransfer">
+                                    <span data-i18n="tab.book.transferType.returnTransfer"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Arrival Date and Time -->
+                        <div class="form-group" data-type="date">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferStartDate"
+                                data-i18n="tab.book.transferStartDate.label">
+                            </label>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class='input-group date date-picker' id='transferStartDate'>
+                                    <input type='text' class="form-control" data-date-pickTime="false" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class='input-group date time-picker' id='transferStartTime'>
+                                    <input type='text' class="form-control" data-date-pickDate="false" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrival Place -->
+                        <div class="form-group" data-type="select">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferStartPlace"
+                                data-i18n="tab.book.transferStartPlace.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <select class="form-control" id="transferStartPlace" name="transferStartPlace">
+                                    <option data-i18n="tab.book.transferStartPlace.default" value="0"></option>
+                                    <option data-i18n="tab.book.transferStartPlace.cdg" value="1"></option>
+                                    <option data-i18n="tab.book.transferStartPlace.orly" value="2"></option>
+                                    <option data-i18n="tab.book.transferStartPlace.beauvais" value="3"></option>
+                                    <option data-i18n="tab.book.transferStartPlace.disney" value="4"></option>
+                                    <option data-i18n="tab.book.transferStartPlace.paris" value="5"></option>
+                                    <option data-i18n="tab.book.transferStartPlace.other" value="6"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Arrival Flight -->
+                        <div class="form-group check-field row" data-type="text">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferStartFlightNumber">
+                                <span data-i18n="tab.book.flightNumber.label"></span>
+                                <span class="error" data-i18n="tab.book.flightNumber.error"></span>
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <input class="form-control" type="text" id="transferStartFlightNumber">
+                            </div>
+                        </div>
+
+                        <!-- Arrival Address -->
+                        <div class="form-group" data-type="textarea">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferStartAddress"
+                                data-i18n="tab.book.address.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <textarea class="form-control" name="transferStartAddress" id="transferStartAddress" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Destination Date and Time -->
+                        <div class="form-group end-control" data-type="date">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferEndDate"
+                                data-i18n="tab.book.transferEndDate.label">
+                            </label>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class='input-group date date-picker' id='transferEndDate'>
+                                    <input type='text' class="form-control" data-date-pickTime="false" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class='input-group date time-picker' id='transferEndTime'>
+                                    <input type='text' class="form-control" data-date-pickDate="false"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Destination Place -->
+                        <div class="form-group" data-type="select">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferEndPlace"
+                                data-i18n="tab.book.transferEndPlace.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <select class="form-control" id="transferEndPlace" name="transferEndPlace">
+                                    <option data-i18n="tab.book.transferEndPlace.default" value="0"></option>
+                                    <option data-i18n="tab.book.transferEndPlace.cdg" value="1"></option>
+                                    <option data-i18n="tab.book.transferEndPlace.orly" value="2"></option>
+                                    <option data-i18n="tab.book.transferEndPlace.beauvais" value="3"></option>
+                                    <option data-i18n="tab.book.transferEndPlace.disney" value="4"></option>
+                                    <option data-i18n="tab.book.transferEndPlace.parisHotel" value="5"></option>
+                                    <option data-i18n="tab.book.transferEndPlace.parisTrain" value="6"></option>
+                                    <option data-i18n="tab.book.transferEndPlace.other" value="7"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Destination Flight -->
+                        <div class="form-group row" data-type="text">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferEndFlightNumber"
+                                data-i18n="tab.book.flightNumber.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <input class="form-control" type="text" id="transferEndFlightNumber">
+                            </div>
+                        </div>
+
+                        <!-- Destination Address -->
+                        <div class="form-group" data-type="textarea">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="transferEndAddress"
+                                data-i18n="tab.book.address.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <textarea class="form-control" name="transferEndAddress" id="transferEndAddress" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Number of Passenger -->
+                        <div class="form-group" data-type="select">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="nbAdultPassengers"
+                                data-i18n="tab.book.nbPassengers.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <select class="passengers form-control" id="nbAdultPassengers" name="nbAdultPassengers">
+                                            <option data-i18n="tab.book.nbPassengers.adult1" value="1"></option>
+                                            <option data-i18n="tab.book.nbPassengers.adult2" value="2"></option>
+                                            <option data-i18n="tab.book.nbPassengers.adult3" value="3"></option>
+                                            <option data-i18n="tab.book.nbPassengers.adult4" value="4"></option>
+                                            <option data-i18n="tab.book.nbPassengers.adult5" value="5"></option>
+                                            <option data-i18n="tab.book.nbPassengers.adult6" value="6"></option>
+                                            <option data-i18n="tab.book.nbPassengers.adult7" value="7"></option>
+                                            <option data-i18n="tab.book.nbPassengers.adult8" value="8"></option>
+                                            <option data-i18n="tab.book.nbPassengers.more" value="more"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <select class="passengers form-control" id="nbChildPassengers" name="nbChildPassengers">
+                                            <option data-i18n="tab.book.nbPassengers.child0" value="0"></option>
+                                            <option data-i18n="tab.book.nbPassengers.child1" value="1"></option>
+                                            <option data-i18n="tab.book.nbPassengers.child2" value="2"></option>
+                                            <option data-i18n="tab.book.nbPassengers.child3" value="3"></option>
+                                            <option data-i18n="tab.book.nbPassengers.child4" value="4"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <select class="passengers form-control" id="nbBabyPassengers" name="nbBabyPassengers">
+                                            <option data-i18n="tab.book.nbPassengers.baby0" value="0"></option>
+                                            <option data-i18n="tab.book.nbPassengers.baby1" value="1"></option>
+                                            <option data-i18n="tab.book.nbPassengers.baby2" value="2"></option>
+                                            <option data-i18n="tab.book.nbPassengers.baby3" value="3"></option>
+                                            <option data-i18n="tab.book.nbPassengers.baby4" value="4"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group" data-type="radio">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="customerGender"
+                                data-i18n="tab.book.customerGender.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <label class="radio-inline">
+                                    <input type="radio" name="customerGender" id="genderMr" value="genderMr" checked>
+                                    <span data-i18n="tab.book.customerGender.mr"></span>
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="customerGender" id="genderMrs" value="genderMrs">
+                                    <span data-i18n="tab.book.customerGender.mrs"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Name -->
+                        <div class="form-group row" data-type="text">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="customerName"
+                                data-i18n="tab.book.customerName.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <input class="form-control" type="text" id="customerName">
+                            </div>
+                        </div>
+
+                        <!-- Mail -->
+                        <div class="form-group check-field" data-type="text">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="customerMail">
+                                <span data-i18n="tab.book.customerMail.label"></span>
+                                <span class="error" data-i18n="tab.book.customerMail.error"></span>
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <input class="form-control" type="email" id="customerMail">
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group" data-type="text">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="customerPhone"
+                                data-i18n="tab.book.customerPhone.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <input class="form-control" type="tel" id="customerPhone">
+                                <span class="help-block" data-i18n="tab.book.customerPhone.help"></span>
+                            </div>
+                        </div>
+
+                        <!-- Comment -->
+                        <div class="form-group" data-type="textarea">
+                            <label
+                                class="col-sm-4 col-xs-12 control-label"
+                                for="comment"
+                                data-i18n="tab.book.comment.label">
+                            </label>
+                            <div class="col-sm-8 col-xs-12">
+                                <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <button type="submit" class="fscot btn btn-default" data-i18n="tab.book.submit"></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="alert alert-success" role="alert" data-i18n="tab.book.success"></div>
+                    <div class="alert alert-danger" role="alert" data-i18n="tab.book.error"></div>
+                </div>
+
                 <!-- Photo -->
                 <div class="tab-content" id="photo">
-                     <ul class="row">
-                          <li class="col-sm-3 col-xs-6">
-                              <img src="img/photos/thumbs/caravelle_01.jpg" data-full="img/photos/caravelle_01.jpg"/>
-                          </li>
-                          <li class="col-sm-3 col-xs-6">
-                              <img src="img/photos/thumbs/caravelle_02.jpg" data-full="img/photos/caravelle_02.jpg"/>
-                          </li>
-                          <li class="col-sm-3 col-xs-6">
-                              <img src="img/photos/thumbs/caravelle_03.jpg" data-full="img/photos/caravelle_03.jpg"/>
-                          </li>
-                          <li class="col-sm-3 col-xs-6">
-                              <img src="img/photos/thumbs/caravelle_04.jpg" data-full="img/photos/caravelle_04.jpg"/>
-                          </li>
-                     </ul>
+                    <ul class="row">
+                        <li class="col-sm-3 col-xs-6">
+                            <img src="img/photos/thumbs/caravelle_01.jpg" data-full="img/photos/caravelle_01.jpg"/>
+                        </li>
+                        <li class="col-sm-3 col-xs-6">
+                            <img src="img/photos/thumbs/caravelle_02.jpg" data-full="img/photos/caravelle_02.jpg"/>
+                        </li>
+                        <li class="col-sm-3 col-xs-6">
+                            <img src="img/photos/thumbs/caravelle_03.jpg" data-full="img/photos/caravelle_03.jpg"/>
+                        </li>
+                        <li class="col-sm-3 col-xs-6">
+                            <img src="img/photos/thumbs/caravelle_04.jpg" data-full="img/photos/caravelle_04.jpg"/>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
@@ -161,8 +460,6 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script type="text/javascript" data-main="js/main" src="js/libs/require.js"></script>
 

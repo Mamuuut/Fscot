@@ -5,40 +5,47 @@
 define( [
     'analytics',
     'loading',
-    'locale'
+    'locale',
+    'jsonRPC2php.client',
+    'bootstrap-datetimepicker'
 ], function( Analytics, Loading, LocaleManager )
 {
     function Booking()
     {
-        var that = this;
+        var self = this;
         this.showContent( "#form" );
 
         /* Error */
        $( "#book_error" ).click( function()
        {
-            that.showContent( "#form" );
+            self.showContent( "#form" );
             Analytics.trackEvent( "Navigation", "Mail_Error_Click" );
        } );
 
         /* Success */
        $( "#book_success" ).click( function()
        {
-            that.showContent( "#form" );
+            self.showContent( "#form" );
             $( "#nav li[data-tab=home]" ).click();
             Analytics.trackEvent( "Navigation", "Mail_Success_Click" );
        } );
 
-        /* Date pickers init */
-        $( '.datepicker' ).datepicker();
+        /* Pickers */
+        $( '.date-picker' ).datetimepicker({
+            pickTime: false
+        });
+        $( '.time-picker' ).datetimepicker({
+            pickDate: false
+        });
 
         /* Transfer type init */
         $( "#oneWayTransfer" ).click( function()
         {
-            $( "#transferEndDiv" ).hide();
+            $( ".end-control" ).hide();
         } );
         $( "#returnTransfer" ).click( function()
         {
-            $( "#transferEndDiv" ).show();
+            $( ".end-control" ).show();
         } );
         $( "#oneWayTransfer" ).click();
 
@@ -46,20 +53,8 @@ define( [
         $( "#transferStartPlace" ).change( function()
         {
             var selection = $( "#transferStartPlace" ).val();
-            if( selection != 0 && selection < 4 )
-            {
-                $( "#transferStartFlightNumberDiv" ).show();
-                $( "#transferStartHourDiv" ).hide();
-            } else {
-                $( "#transferStartFlightNumberDiv" ).hide();
-                $( "#transferStartHourDiv" ).show();
-            }
-            if( selection > 4 )
-            {
-                $( "#transferStartAddressDiv" ).show();
-            } else {
-                $( "#transferStartAddressDiv" ).hide();
-            }
+            $( "#transferStartFlightNumber" ).closest('.form-group').toggle(selection != 0 && selection < 4);
+            $( "#transferStartAddress" ).closest('.form-group').toggle(selection > 4);
         } );
         $( "#transferStartPlace" ).change();
 
@@ -67,25 +62,13 @@ define( [
         $( "#transferEndPlace" ).change( function()
         {
             var selection = $( "#transferEndPlace" ).val();
-            if( selection != 0 && selection < 4 )
-            {
-                $( "#transferEndFlightNumberDiv" ).show();
-                $( "#transferEndHourDiv" ).hide();
-            } else {
-                $( "#transferEndFlightNumberDiv" ).hide();
-                $( "#transferEndHourDiv" ).show();
-            }
-            if( selection > 4 )
-            {
-                $( "#transferEndAddressDiv" ).show();
-            } else {
-                $( "#transferEndAddressDiv" ).hide();
-            }
+            $( "#transferEndFlightNumber" ).closest('.form-group').toggle(selection != 0 && selection < 4);
+            $( "#transferEndAddress" ).closest('.form-group').toggle(selection > 4);
         } );
         $( "#transferEndPlace" ).change();
 
         /* Form init */
-        $( "#form" ).on( "onsubmit", function()
+        $( "form" ).on( "onsubmit", function()
         {
             return false;
         } );
@@ -94,41 +77,58 @@ define( [
     /* Form validity check */
     Booking.prototype.checkForm = function()
     {
+        $('#booking .alert').hide();
         Loading.start();
 
         Analytics.trackEvent( "Form", "Submit" );
 
-        var that = this;
+        var self = this;
         var isValid = true;
 
-        $.each( $( ".checkField:visible input[type=text]" ), function()
+        $.each( $( ".check-field:visible input[type=text]" ), function()
         {
-            isValid = !that.checkEmptyField( $( this ) ) && isValid;
+            isValid = !self.checkEmptyField( $( this ) ) && isValid;
         } );
 
-        $.each( $( ".checkField:visible textarea" ), function()
+        $.each( $( ".check-field:visible textarea" ), function()
         {
-            isValid = !that.checkEmptyField( $( this ) ) && isValid;
+            isValid = !self.checkEmptyField( $( this ) ) && isValid;
         } );
 
-        $.each( $( ".checkField:visible select" ), function()
+        $.each( $( ".check-field:visible select" ), function()
         {
-            isValid = !that.checkItemSelection( $( this ) ) && isValid;
+            isValid = !self.checkItemSelection( $( this ) ) && isValid;
         } );
 
         isValid = !this.checkMail() && isValid;
 
         if( isValid )
         {
-            $( "#mailContent" ).attr( 'value', this.generateMailContent() );
-            $( "#phpLocale" ).attr( 'value', LocaleManager.getLocale() );
+            var rpc = new jsonrpcphp('api.php',function(){
+                rpc.server.sendMail(
+                    [
+                        $( '#customerMail' ).val(),
+                        self.generateMailContent(),
+                        LocaleManager.getLocale()
+                    ],
+                    function(result)
+                    {
+                        if (result.msg === 'mailsuccess') {
+                            $('#booking .alert-sucess').show();
+                        }
+                        else {
+                            $('#booking .alert-danger').show();
+                        }
+                    }
+                );
+            });
 
             Analytics.trackEvent( "Form", "Check", "valid" );
         };
 
         Loading.stop();
 
-        return isValid;
+        return false;// isValid;
     };
 
     Booking.prototype.checkMail = function()
@@ -158,10 +158,10 @@ define( [
     {
         if( visible )
         {
-            $( field ).addClass( "error" );
+            $( field ).closest('.form-group').addClass( "has-error" );
             Analytics.trackEvent( "Form", "Check", "error", $( 'label', field ).attr( 'for' ) );
         } else {
-            $( field ).removeClass( "error" );
+            $( field ).removeClass( "has-error" );
         }
     };
 
@@ -172,117 +172,82 @@ define( [
         de: 'Allemand'
     };
 
-    Booking.prototype.getLabelText = function( fieldName )
-    {
-        var labelI18n = $( 'label[for=' + fieldName + ']' ).data( 'i18n' );
-        var label = $.i18n.prop( labelI18n );
-        label = label.replace( /<span.*/gm, "" );
-
-        return label;
-    };
-
     /* Mail */
-    Booking.prototype.getRadioText = function( radioName )
+    Booking.prototype.getRadioText = function( formGroup )
     {
-        var label = this.getLabelText( radioName );
-
-        var inputValue = $( 'input:radio[name=' + radioName + ']:checked' ).attr( 'value' );
-        var valueI18n = $( 'label[for=' + inputValue + ']' ).data( 'i18n' );
-        var value = $.i18n.prop( valueI18n );
-
-        return label + ' : ' + value + "\n";
+        var valueI18n = formGroup.find('input:radio:checked').closest('label').find('span').data( 'i18n' );
+        return LocaleManager.getString( valueI18n, 'fr' ) + "\n";
     };
 
-    Booking.prototype.getInputText = function( inputName )
+    Booking.prototype.getInputText = function( formGroup )
     {
-        if( 0 == $( 'input[name=' + inputName + ']:visible' ).length )
-            return "";
-
-        var label = this.getLabelText( inputName );
-        return label + ' : ' + $( 'input[name=' + inputName + ']' ).val() + "\n";
+        return formGroup.find('input').val() + "\n";
     };
 
-    Booking.prototype.getDateText = function( inputName )
+    Booking.prototype.getDateText = function( formGroup )
     {
-        if( 0 == $( 'input[name=' + inputName + ']:visible' ).length )
-            return "";
-
-        var label = this.getLabelText( inputName );
-        var date = $.datepicker.formatDate( 'dd M yy', $( 'input[name=' + inputName + ']' ).datepicker( "getDate" ) );
-        return label + ' : ' + date + "\n";
+        var date = formGroup.find('.date-picker').data("DateTimePicker").getDate().format('DD/MM/YYYY');
+        var time = formGroup.find('.time-picker').data("DateTimePicker").getDate().format('HH:mm');
+        return date + ' - ' + time + "\n";
     };
 
-    Booking.prototype.getTextAreaText = function( textAreaName )
+    Booking.prototype.getTextAreaText = function( formGroup )
     {
-        if( 0 == $( 'textarea[name=' + textAreaName + ']:visible' ).length )
-            return "";
-
-        var label = this.getLabelText( textAreaName );
-        return label + ' : ' + $( 'textarea[name=' + textAreaName + ']' ).val() + "\n";
+        return formGroup.find('textarea').val() + "\n";
     }
 
-    Booking.prototype.getOptionValue = function( selectName )
+    Booking.prototype.getSelectText = function( formGroup )
     {
-        var select = $( 'select[name=' + selectName + ']' );
-        var selectValue = select.val();
-        var option = $( "option[value=" + selectValue + "]", select );
-        return option.attr( 'value' );
-    };
-
-    Booking.prototype.getOptionText = function( selectName )
-    {
-        var select = $( 'select[name=' + selectName + ']' );
-        var selectValue = select.val();
-        var option = $( "option[value=" + selectValue + "]", select );
-        var optionI18n = option.data( 'i18n' );
-        return $.i18n.prop( optionI18n );
-    };
-
-    Booking.prototype.getPassengersText = function()
-    {
-        var result = this.getLabelText( 'nbAdultPassengers' ) + ' :\n';
-        result += this.getOptionValue( 'nbAdultPassengers' ) + ' adulte(s)\n';
-        result += this.getOptionValue( 'nbChildPassengers' ) + ' enfants(s)\n';
-        result += this.getOptionValue( 'nbBabyPassengers' ) + ' bébé(s)\n';
-        return result;
-    };
-
-    Booking.prototype.getSelectText = function( selectName )
-    {
-        var label = this.getLabelText( selectName );
-        var value = this.getOptionText( selectName );
-        return label + ' : ' + value + "\n";
+        var sResult = '\n';
+        formGroup.find('select').each(function()
+        {
+            if ($(this).find('option:selected').val() !== "0") {
+                var i18nKey = $(this).find('option:selected').data('i18n');
+                sResult += LocaleManager.getString( i18nKey, 'fr' ) + '\n';
+            }
+        });
+        return sResult;
     };
 
     Booking.prototype.generateMailContent = function()
     {
+        var self = this;
         var language = languageMap[ $( ".lang-btn.selected" ).data( 'lang' ) ];
         var mailContent = "Langue du client : " + language + "\n\n";
 
-        mailContent += this.getRadioText( 'transferType' ) + "\n";
+        $('.form-group:visible').each(function()
+        {
+            var i18nKey     = $(this).find('[data-i18n]:not(.btn)').data('i18n');
+            if (i18nKey !== undefined) {
 
-        mailContent += this.getDateText( 'transferStartDate' );
-        mailContent += this.getSelectText( 'transferStartPlace' );
-        mailContent += this.getInputText( 'transferStartFlightNumber' );
-        mailContent += this.getInputText( 'transferStartHour' );
-        mailContent += this.getTextAreaText( 'transferStartAddress' ) + "\n";
+                var i18nValue   = LocaleManager.getString( i18nKey, 'fr' );
+                mailContent += i18nValue + ': ';
 
-        mailContent += this.getSelectText( 'transferEndPlace' );
-        mailContent += this.getInputText( 'transferEndFlightNumber' );
-        mailContent += this.getTextAreaText( 'transferEndAddress' );
-        mailContent += this.getDateText( 'transferEndDate' );
-        mailContent += this.getInputText( 'transferEndHour' ) + "\n";
+                var type        = $(this).data('type');
+                switch(type) {
+                    case 'text' :
+                        mailContent += self.getInputText($(this));
+                        break;
+                    case 'select' :
+                        mailContent += self.getSelectText($(this));
+                        break;
+                    case 'textarea' :
+                        mailContent += self.getTextAreaText($(this));
+                        break;
+                    case 'date' :
+                        mailContent += self.getDateText($(this));
+                        break;
+                    case 'radio' :
+                        mailContent += self.getRadioText($(this));
+                        break;
+                }
 
-        mailContent += this.getPassengersText() + "\n";
-
-        mailContent += this.getRadioText( 'customerGender' );
-        mailContent += this.getInputText( 'customerName' );
-        mailContent += this.getInputText( 'customerMail' );
-        mailContent += this.getInputText( 'customerPhone' ) + "\n";
-
-        mailContent += this.getTextAreaText( 'comment' );
+                mailContent += '\n';
+            }
+        });
 
         decodedHtml = $( '<div />' ).html( mailContent ).text();
+
         return decodedHtml;
     };
 

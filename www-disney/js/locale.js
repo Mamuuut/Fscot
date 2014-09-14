@@ -13,9 +13,10 @@ define( [
     'i18n/main_fr',
     'i18n/main_de',
 
-    'bootstrap-datepicker',
-    'bootstrap-datepicker.de',
-    'bootstrap-datepicker.fr'
+    'moment',
+    'moment-de',
+    'moment-fr',
+    'bootstrap-datetimepicker'
 
 ], function( $, Loading, propertiesEn, propertiesFr, propertiesDe )
 {
@@ -97,11 +98,39 @@ define( [
             $( this ).html( properties[key] );
         } );
 
-        $( '.datepicker' ).datepicker({
-            language: locale
+        $( "[data-placeholder]", parent ).each( function()
+        {
+            var key = $( this ).data( "placeholder" );
+            $( this ).attr('placeholder', properties[key] );
+        } );
+
+        /* Date pickers init */
+        moment.locale(locale);
+
+        $( '.date-picker, .time-picker' ).each(function()
+        {
+            var date = $(this).data("DateTimePicker").getDate();
+            var bIsSet = $(this).val() !== '';
+            $(this).data("DateTimePicker").destroy();
+            $(this).datetimepicker({
+                language: locale
+            });
+            $(this).data("DateTimePicker").setMinDate(new Date());
+            if (bIsSet) {
+                $(this).data("DateTimePicker").setDate(date);
+            }
         });
 
         Loading.stop();
+    };
+
+
+    /**
+     * Get locale string
+     */
+    LocaleManager.prototype.getString = function( key, locale )
+    {
+        return PROPERTIES[locale][key];
     };
 
     /**

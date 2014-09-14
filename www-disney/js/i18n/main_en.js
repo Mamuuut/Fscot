@@ -83,6 +83,88 @@ define(
     'tab.rates.oneWayRates.paris_visit_price'   : '50€ per hour',
 
     'tab.rates.note'    : '<i>*(no historical nor cultural comment)</i>',
-    'tab.rates.content' : '<b>For all other destinations, please contact us to obtain a quote.</b>'
+    'tab.rates.content' : '<b>For all other destinations, please contact us to obtain a quote.</b>',
 
+    /* Booking */
+    'tab.book.header' : 'Booking form',
+
+    'tab.book.transferType.label'          : 'Transfer type',
+    'tab.book.transferType.oneWayTransfer' : 'One way ',
+    'tab.book.transferType.returnTransfer' : 'Return',
+
+    'tab.book.transferStartDate.label' : 'Arrival date and time',
+    'tab.book.transferStartDate.error' : 'Please select a date',
+
+    'tab.book.transferStartPlace.label'    : 'Arrival place',
+    'tab.book.transferStartPlace.default'  : 'Please select a place',
+    'tab.book.transferStartPlace.cdg'      : 'Charles de Gaulle Airport',
+    'tab.book.transferStartPlace.orly'     : 'Orly Airport',
+    'tab.book.transferStartPlace.beauvais' : 'Beauvais Airport',
+    'tab.book.transferStartPlace.disney'   : 'Disney',
+    'tab.book.transferStartPlace.paris'    : 'Paris city hotel',
+    'tab.book.transferStartPlace.other'    : 'Other ',
+
+    'tab.book.flightNumber.label' : 'Number and time of flight',
+    'tab.book.flightNumber.error' : 'Please enter the number of your flight',
+
+    'tab.book.transferStartHour.label' : 'Arrival time',
+
+    'tab.book.transferEndPlace.label'      : 'Destination',
+    'tab.book.transferEndPlace.default'    : 'Please select a place',
+    'tab.book.transferEndPlace.cdg'        : 'Charles de Gaulle Airport',
+    'tab.book.transferEndPlace.orly'       : 'Orly Airport',
+    'tab.book.transferEndPlace.beauvais'   : 'Beauvais Airport',
+    'tab.book.transferEndPlace.disney'     : 'Disney - Hotel',
+    'tab.book.transferEndPlace.parisHotel' : 'Paris city hotel',
+    'tab.book.transferEndPlace.parisTrain' : 'Paris train stations',
+    'tab.book.transferEndPlace.other'      : 'Other',
+
+    'tab.book.address.label' : 'Address',
+    'tab.book.address.error' : 'Please enter an address',
+
+    'tab.book.transferEndDate.label' : 'Return date and time',
+    'tab.book.transferEndDate.error' : 'Please select a date',
+
+    'tab.book.nbPassengers.label'   : 'Number of passengers',
+    'tab.book.nbPassengers.adult1'  : '1 Adult',
+    'tab.book.nbPassengers.adult2'  : '2 Adults',
+    'tab.book.nbPassengers.adult3'  : '3 Adults',
+    'tab.book.nbPassengers.adult4'  : '4 Adults',
+    'tab.book.nbPassengers.adult5'  : '5 Adults',
+    'tab.book.nbPassengers.adult6'  : '6 Adults',
+    'tab.book.nbPassengers.adult7'  : '7 Adults',
+    'tab.book.nbPassengers.adult8'  : '8 Adults',
+    'tab.book.nbPassengers.more' : 'more',
+
+    'tab.book.nbPassengers.child0' : '0 child',
+    'tab.book.nbPassengers.child1' : '1 child',
+    'tab.book.nbPassengers.child2' : '2 children',
+    'tab.book.nbPassengers.child3' : '3 children',
+    'tab.book.nbPassengers.child4' : '4 children',
+
+    'tab.book.nbPassengers.baby0' : '0 baby',
+    'tab.book.nbPassengers.baby1' : '1 baby',
+    'tab.book.nbPassengers.baby2' : '2 babies',
+    'tab.book.nbPassengers.baby3' : '3 babies',
+    'tab.book.nbPassengers.baby4' : '4 babies',
+
+    'tab.book.customerGender.label' : 'Gender',
+    'tab.book.customerGender.mr' : 'Mr.',
+    'tab.book.customerGender.mrs' : 'Mrs.',
+
+    'tab.book.customerName.label' : 'Name',
+    'tab.book.customerName.error' : 'Please enter your name',
+
+    'tab.book.customerMail.label' : 'Email',
+    'tab.book.customerMail.error' : 'Please add a valid address',
+
+    'tab.book.customerPhone.label' : 'Phone number',
+    'tab.book.customerPhone.help'  : 'with country code',
+    'tab.book.customerPhone.error' : 'Please add a valid phone number',
+
+    'tab.book.comment.label' : 'Additional comments',
+
+    'tab.book.submit'   : 'Send reservation',
+    'tab.book.success'  : 'Your reservation request has been sent.<br/>One of our employee will contact you soon.',
+    'tab.book.error'    : 'An error occurred. Please try again later.'
 });
