@@ -30,7 +30,6 @@
                     return array(
                         'msg' => 'mailsuccess'
                     );
-                    return "mailsuccess";
                 } else {
                     return array(
                         'msg' => 'mailerror'

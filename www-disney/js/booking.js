@@ -6,36 +6,61 @@ define( [
     'analytics',
     'loading',
     'locale',
+    'moment',
     'jsonRPC2php.client',
     'bootstrap-datetimepicker'
-], function( Analytics, Loading, LocaleManager )
+], function( Analytics, Loading, LocaleManager, moment )
 {
+    var selectDef = {
+        transferStartPlace : {
+            '1' : { bAirport: true, sCode: 'cdg' },
+            '2' : { bAirport: true, sCode: 'orly' },
+            '3' : { bAirport: true, sCode: 'beauvais' },
+            '4' : { bAirport: true, sCode: 'vatry' },
+            '5' : { sCode: 'disney' },
+            '6' : { bAddress: true, sCode: 'paris' },
+            '7' : { bAddress: true, sCode: 'other' }
+        },
+        transferEndPlace : {
+            '1' : { bAirport: true, sCode: 'cdg' },
+            '2' : { bAirport: true, sCode: 'orly' },
+            '3' : { bAirport: true, sCode: 'beauvais' },
+            '4' : { bAirport: true, sCode: 'vatry' },
+            '5' : { sCode: 'disney' },
+            '6' : { bAddress: true, sCode: 'parisHotel' },
+            '7' : { bAddress: true, sCode: 'parisTrain' },
+            '8' : { bAddress: true, sCode: 'other' }
+        }
+    }
+
     function Booking()
     {
         var self = this;
+
+        this.renderOptions($('#transferStartPlace'), 'transferStartPlace');
+        this.renderOptions($('#transferEndPlace'), 'transferEndPlace');
+
         this.showContent( "#form" );
 
         /* Error */
-       $( "#book_error" ).click( function()
-       {
+        $( "#book_error" ).click( function()
+        {
             self.showContent( "#form" );
             Analytics.trackEvent( "Navigation", "Mail_Error_Click" );
-       } );
+        } );
 
         /* Success */
-       $( "#book_success" ).click( function()
-       {
+        $( "#book_success" ).click( function()
+        {
             self.showContent( "#form" );
             $( "#nav li[data-tab=home]" ).click();
             Analytics.trackEvent( "Navigation", "Mail_Success_Click" );
-       } );
-
-        /* Pickers */
-        $( '.date-picker' ).datetimepicker({
-            pickTime: false
         });
-        $( '.time-picker' ).datetimepicker({
-            pickDate: false
+
+        /* Date Picker */
+        $('#booking').on('locale-change', function()
+        {
+            self.renderDateTimePicker();
         });
 
         /* Transfer type init */
@@ -52,18 +77,18 @@ define( [
         /* Transfer start place init */
         $( "#transferStartPlace" ).change( function()
         {
-            var selection = $( "#transferStartPlace" ).val();
-            $( "#transferStartFlightNumber" ).closest('.form-group').toggle(selection != 0 && selection < 4);
-            $( "#transferStartAddress" ).closest('.form-group').toggle(selection > 4);
+            var option = $( this ).find('option:selected');
+            $( "#transferStartFlightNumber" ).closest('.form-group').toggle(option.data('airport'));
+            $( "#transferStartAddress" ).closest('.form-group').toggle(option.data('address'));
         } );
         $( "#transferStartPlace" ).change();
 
         /* Transfer end place init */
         $( "#transferEndPlace" ).change( function()
         {
-            var selection = $( "#transferEndPlace" ).val();
-            $( "#transferEndFlightNumber" ).closest('.form-group').toggle(selection != 0 && selection < 4);
-            $( "#transferEndAddress" ).closest('.form-group').toggle(selection > 4);
+            var option = $( this ).find('option:selected');
+            $( "#transferEndFlightNumber" ).closest('.form-group').toggle(option.data('airport'));
+            $( "#transferEndAddress" ).closest('.form-group').toggle(option.data('address'));
         } );
         $( "#transferEndPlace" ).change();
 
@@ -74,10 +99,101 @@ define( [
         } );
     };
 
+    Booking.prototype.renderDateTimePicker = function()
+    {
+        this.renderDatePicker($('#transferStartDate_wrapper'), 'transferStartDate');
+        this.renderTimePicker($('#transferStartTime_wrapper'), 'transferStartTime');
+        this.renderDatePicker($('#transferEndDate_wrapper'), 'transferEndDate');
+        this.renderTimePicker($('#transferEndTime_wrapper'), 'transferEndTime');
+    };
+
+    Booking.prototype.renderDatePicker = function(parent, sId)
+    {
+        parent.empty();
+        $(
+            '<div class="input-group date date-picker" id="' + sId + '">' +
+                '<input type="text" class="form-control" />' +
+                '<span class="input-group-addon">' +
+                    '<span class="glyphicon glyphicon-calendar"></span>' +
+                '</span>' +
+            '</div>'
+        )
+            .appendTo(parent)
+            .datetimepicker({
+                'pickTime' : false,
+                'minDate'  : moment().format('MM/DD/YYYY'),
+                'language' : LocaleManager.getLocale()
+            });
+    };
+
+    Booking.prototype.renderTimePicker = function(parent, sId)
+    {
+        parent.empty();
+        $(
+            '<div class="input-group date time-picker" id="' + sId + '">' +
+                '<input type="text" class="form-control" />' +
+                '<span class="input-group-addon">' +
+                    '<span class="glyphicon glyphicon-time"></span>' +
+                '</span>' +
+            '</div>'
+        )
+            .appendTo(parent)
+            .datetimepicker({
+                'pickDate' : false,
+                'language' : LocaleManager.getLocale()
+            });
+    };
+
+    /* Render the from/to select options */
+    Booking.prototype.renderOptions = function(select, sType)
+    {
+        var asoParam = selectDef[sType];
+
+        var defaultOption = $('<option></option>', {
+            'data-i18n'     : 'tab.book.' + sType + '.default',
+            'value'         : 0,
+            'data-airport'  : 'false',
+            'data-address'  : 'false'
+        });
+        select.append(defaultOption);
+
+        $.each(asoParam, function(index, oParam)
+        {
+            var option = $('<option></option>', {
+                'data-i18n'     : 'tab.book.' + sType + '.' + oParam.sCode,
+                'value'         : oParam.sCode,
+                'data-airport'  : oParam.bAirport ? 'true' : 'false',
+                'data-address'  : oParam.bAddress ? 'true' : 'false'
+            });
+            select.append(option);
+        });
+    };
+
+    /* Form validity check */
+    Booking.prototype.setParam = function(oParam)
+    {
+        if (oParam.sReturn !== undefined) {
+            $('[name=transferType][value=' + oParam.sReturn + ']').prop('checked', true);
+        }
+
+        if (oParam.sFrom !== undefined) {
+            $('select#transferStartPlace').val(oParam.sFrom);
+        }
+
+        if (oParam.sTo !== undefined) {
+            $('select#transferEndPlace').val(oParam.sTo);
+        }
+
+        if (oParam.iNbPerson !== undefined) {
+            $('select#nbAdultPassengers').val(oParam.iNbPerson);
+        }
+    };
+
     /* Form validity check */
     Booking.prototype.checkForm = function()
     {
         $('#booking .alert').hide();
+        $('#booking .has-error').removeClass('has-error');
         Loading.start();
 
         Analytics.trackEvent( "Form", "Submit" );

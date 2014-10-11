@@ -119,15 +119,8 @@
 
                 <!-- Rates -->
                 <div class="tab-content" id="rates">
-                    <div id="returnRates"></div>
-                    <div class="book-wrapper">
-                        <a href="#booking" class="fscot btn book" data-i18n="tab.home.book"></a>
-                    </div>
-
-                    <div id="oneWayRates"></div>
-                    <div class="book-wrapper">
-                        <a href="#booking" class="fscot btn book" data-i18n="tab.home.book"></a>
-                    </div>
+                    <div id="returnRates" class="table-wrapper"></div>
+                    <div id="oneWayRates" class="table-wrapper"></div>
 
                     <div data-i18n="tab.rates.note"></div>
                     <div data-i18n="tab.rates.content"></div>
@@ -168,22 +161,8 @@
                                 for="transferStartDate"
                                 data-i18n="tab.book.transferStartDate.label">
                             </label>
-                            <div class="col-sm-4 col-xs-6">
-                                <div class='input-group date date-picker' id='transferStartDate'>
-                                    <input type='text' class="form-control" data-date-pickTime="false" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-xs-6">
-                                <div class='input-group date time-picker' id='transferStartTime'>
-                                    <input type='text' class="form-control" data-date-pickDate="false" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
-                                </div>
-                            </div>
+                            <div class="col-sm-4 col-xs-6" id='transferStartDate_wrapper'></div>
+                            <div class="col-sm-4 col-xs-6" id='transferStartTime_wrapper'></div>
                         </div>
 
                         <!-- Arrival Place -->
@@ -194,15 +173,7 @@
                                 data-i18n="tab.book.transferStartPlace.label">
                             </label>
                             <div class="col-sm-8 col-xs-12">
-                                <select class="form-control" id="transferStartPlace" name="transferStartPlace">
-                                    <option data-i18n="tab.book.transferStartPlace.default" value="0"></option>
-                                    <option data-i18n="tab.book.transferStartPlace.cdg" value="1"></option>
-                                    <option data-i18n="tab.book.transferStartPlace.orly" value="2"></option>
-                                    <option data-i18n="tab.book.transferStartPlace.beauvais" value="3"></option>
-                                    <option data-i18n="tab.book.transferStartPlace.disney" value="4"></option>
-                                    <option data-i18n="tab.book.transferStartPlace.paris" value="5"></option>
-                                    <option data-i18n="tab.book.transferStartPlace.other" value="6"></option>
-                                </select>
+                                <select class="form-control" id="transferStartPlace" name="transferStartPlace"></select>
                             </div>
                         </div>
 
@@ -238,22 +209,8 @@
                                 for="transferEndDate"
                                 data-i18n="tab.book.transferEndDate.label">
                             </label>
-                            <div class="col-sm-4 col-xs-6">
-                                <div class='input-group date date-picker' id='transferEndDate'>
-                                    <input type='text' class="form-control" data-date-pickTime="false" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-xs-6">
-                                <div class='input-group date time-picker' id='transferEndTime'>
-                                    <input type='text' class="form-control" data-date-pickDate="false"/>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
-                                </div>
-                            </div>
+                            <div class="col-sm-4 col-xs-6" id='transferEndDate_wrapper'></div>
+                            <div class="col-sm-4 col-xs-6" id='transferEndTime_wrapper'></div>
                         </div>
 
                         <!-- Destination Place -->
@@ -264,16 +221,7 @@
                                 data-i18n="tab.book.transferEndPlace.label">
                             </label>
                             <div class="col-sm-8 col-xs-12">
-                                <select class="form-control" id="transferEndPlace" name="transferEndPlace">
-                                    <option data-i18n="tab.book.transferEndPlace.default" value="0"></option>
-                                    <option data-i18n="tab.book.transferEndPlace.cdg" value="1"></option>
-                                    <option data-i18n="tab.book.transferEndPlace.orly" value="2"></option>
-                                    <option data-i18n="tab.book.transferEndPlace.beauvais" value="3"></option>
-                                    <option data-i18n="tab.book.transferEndPlace.disney" value="4"></option>
-                                    <option data-i18n="tab.book.transferEndPlace.parisHotel" value="5"></option>
-                                    <option data-i18n="tab.book.transferEndPlace.parisTrain" value="6"></option>
-                                    <option data-i18n="tab.book.transferEndPlace.other" value="7"></option>
-                                </select>
+                                <select class="form-control" id="transferEndPlace" name="transferEndPlace"></select>
                             </div>
                         </div>
 

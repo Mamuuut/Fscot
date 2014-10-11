@@ -13,6 +13,24 @@ define( function()
         // 'tab.rates.pers_8'
     ];
 
+    var bookingDef = {
+        nbPerson : [1,4,5,6,7],
+        isReturn : {
+            returnRates : 'returnTransfer',
+            oneWayRates : 'oneWayTransfer'
+        },
+        from : {
+            suburbs : 'other'
+        },
+        to : {
+            paris          : 'parisHotel',
+            versailles     : 'other',
+            deauville      : 'other',
+            mont_st_michel : 'other',
+            visit          : 'other'
+        }
+    };
+
     var ratesDef = {
         returnRates: {
             cdg: {
@@ -39,7 +57,7 @@ define( function()
             suburbs: {
                 paris: 140
             }
-        },        
+        },
         oneWayRates: {
             cdg: {
                 paris:      [ 55, 60, 65, 70, 80 ],
@@ -69,61 +87,86 @@ define( function()
             }
         }
     };
-    
-    function Rates() 
+
+    function Rates(booking)
     {
-        var that = this;
+        this.booking = booking;
+        var self = this;
         $.each( ratesDef, function( ratesCode, rates )
         {
-            that.createTable( ratesCode, rates );
+            self.createTable( ratesCode, rates );
         } );
-    }; 
-    
+    };
+
     Rates.prototype.createTable = function( code, rates )
     {
-        var table = $( '<table cellspacing="1" width="100%" class="borderOn"></table>' );
-        var body = $( '<tbody></tbody>' );
-        var titleRow = $( 
+        var table = $( '<table cellspacing="1" width="100%" class="table table-striped table-bordered"></table>' );
+        table.data( 'return', bookingDef.isReturn[code]);
+        var header = $( '<thead></thead>' );
+        var titleRow = $(
             '<tr>' +
                 '<th data-i18n="tab.rates.' + code + '"></th>' +
-                // '<th i18n="tab.rates.pers_1_3"></th>' +
-                // '<th i18n="tab.rates.pers_4"></th>' +
-                // '<th i18n="tab.rates.pers_5"></th>' +
-                // '<th i18n="tab.rates.pers_6"></th>' +
-                // '<th i18n="tab.rates.pers_7_8"></th>' +
-                // '<th i18n="tab.rates.pers_7_8"></th>' +
             '</tr>' );
         $.each(titles, function(index, title)
         {
             titleRow.append('<th data-i18n="' + title + '"></th>');
         });
 
-        body.append( titleRow );
-        
-        var that = this;
+        header.append( titleRow );
+
+        var body = $( '<tbody></tbody>' );
+        var self = this;
         $.each( rates, function( from, toRates )
         {
             $.each( toRates, function( to, rowRates )
             {
-                that.createRow( body, code, from, to, rowRates );
+                self.createRow( body, code, from, to, rowRates );
             } );
         } );
-        
+
+        table.append( header );
         table.append( body );
         $( "#" + code ).append( table );
+
+        table.find('td').click(function()
+        {
+            var sFrom = $(this).closest('tr').data('from');
+            if (bookingDef.from[sFrom] !== undefined) {
+                sFrom = bookingDef.from[sFrom];
+            }
+
+            var sTo = $(this).closest('tr').data('to');
+            if (bookingDef.to[sTo] !== undefined) {
+                sTo = bookingDef.to[sTo];
+            }
+
+            var oBookingParam = {
+                iNbPerson   : $(this).data('nb-person'),
+                sFrom       : sFrom,
+                sTo         : sTo,
+                sReturn     : $(this).closest('table').data('return')
+            }
+
+            self.booking.setParam(oBookingParam);
+            window.location.hash = "#booking";
+        });
     };
-    
+
     Rates.prototype.createRow = function( body, code, from, to, ratesRow )
     {
         var row = $( '<tr></tr>' );
+        row.data( 'from', from);
+        row.data( 'to', to);
         var localeCode = from + "_" + to;
         row.append( $( '<td data-i18n="tab.rates.' + code + '.' + localeCode + '"></td>' ) );
-        
+
         if( "object" == typeof( ratesRow ) )
         {
             $.each( ratesRow, function( index, rate )
             {
-                row.append( $( '<td class="price">' + rate + ' €</td>' ) );
+                var cell = $( '<td class="price">' + rate + ' €</td>' );
+                cell.data( 'nb-person', bookingDef.nbPerson[index] );
+                row.append( cell );
             } );
         }
         else if( "string" == typeof( ratesRow ) )
@@ -134,9 +177,9 @@ define( function()
         {
             row.append( $( '<td class="price" colspan="5">' + ratesRow + ' €</td>' ) );
         }
-        
+
         body.append( row );
     }
-    
+
     return Rates;
 } );

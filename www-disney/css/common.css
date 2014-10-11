@@ -186,36 +186,45 @@ body {
 }
 
 /* Table */
+
+#rates .table-wrapper {
+    border-top-left-radius: 12px;
+    border: 1px solid #aaa;
+}
+
 #rates table {
-    border-collapse:collapse;
+    border-top-left-radius: 12px;
+    overflow: hidden;
+    margin: 0;
 }
 
-#rates table, #rates th {
-    border: 1px solid black;
+#rates table>tbody>tr:nth-child(even)>td {
+    background-color: #eee;
 }
 
-#rates th {
-    background-color: #333;
-    color: white;
+#rates table>thead>tr>th {
+    background: #8F1E8F;
+    color: #eee;
+}
+
+#rates table>thead>tr>th {
+    border-bottom-width: 1px;
 }
 
 #rates td, #rates th {
-    padding: 0 4px;
     text-align: center;
 }
 
 #rates td:first-child, #rates th:first-child {
     text-align: left;
     width: 33%;
-    border-right: 1px solid black;
 }
 
-#rates tr:nth-child(even) {
-    background: #DDD;
-}
-
-#rates tr:nth-child(odd) {
-    background: #FFF;
+#rates table>tbody>tr>td:hover {
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #BB59BB;
+    color: #fff;
 }
 
 /* Booking */

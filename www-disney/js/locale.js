@@ -107,19 +107,7 @@ define( [
         /* Date pickers init */
         moment.locale(locale);
 
-        $( '.date-picker, .time-picker' ).each(function()
-        {
-            var date = $(this).data("DateTimePicker").getDate();
-            var bIsSet = $(this).val() !== '';
-            $(this).data("DateTimePicker").destroy();
-            $(this).datetimepicker({
-                language: locale
-            });
-            $(this).data("DateTimePicker").setMinDate(new Date());
-            if (bIsSet) {
-                $(this).data("DateTimePicker").setDate(date);
-            }
-        });
+        $('.tab-content').trigger('locale-change');
 
         Loading.stop();
     };

@@ -45,11 +45,11 @@ require( [
         /* Analytics */
         Analytics.initialize( 'UA-35258729-1' );
 
-        /* Rates tables generation */
-        var rates = new Rates();
-
         /* Booking form */
         booking = new Booking();
+
+        /* Rates tables generation */
+        var rates = new Rates(booking);
 
        /* Gallery */
         var gallery = new Gallery();
